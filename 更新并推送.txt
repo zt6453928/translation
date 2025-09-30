@@ -1,0 +1,146 @@
+📤 更新 GitHub 仓库的步骤
+======================
+
+我已经优化了以下文件来修复 Zeabur 部署问题：
+✅ Dockerfile - 增加了更多系统依赖和超时设置
+✅ app.py - 优化了端口配置，支持 Zeabur 的 PORT 环境变量
+✅ requirements.txt - 移除了 gunicorn，添加了 requests
+
+现在需要将这些修改推送到 GitHub：
+
+方法 1：使用 GitHub Desktop（推荐）
+----------------------------------
+
+1. 打开 GitHub Desktop
+
+2. 如果已经添加了仓库：
+   - 在左侧仓库列表中选择 "translation"
+   - 会看到修改的文件列表
+
+3. 如果还没添加仓库：
+   - File → Add Local Repository
+   - 选择 /Users/enithz/Desktop/translation
+   - 点击 "Add Repository"
+
+4. 查看更改：
+   - 左侧会显示修改的文件：
+     ✓ Dockerfile
+     ✓ app.py
+     ✓ requirements.txt
+
+5. 提交更改：
+   - Summary 输入：Fix Zeabur deployment issues
+   - Description 输入：
+     - Optimized Dockerfile with more dependencies
+     - Added PORT environment variable support
+     - Increased pip timeout for installation
+   - 点击 "Commit to main"
+
+6. 推送到 GitHub：
+   - 点击顶部的 "Push origin" 按钮
+   - 等待推送完成
+
+7. 验证：
+   - 访问 https://github.com/zt6453928/translation
+   - 刷新页面，应该能看到最新的修改
+
+
+方法 2：使用终端命令
+-------------------
+
+打开终端，复制粘贴以下命令：
+
+cd /Users/enithz/Desktop/translation
+
+git add .
+
+git commit -m "Fix Zeabur deployment issues
+
+- Optimized Dockerfile with more system dependencies
+- Added PORT environment variable support for Zeabur
+- Increased pip installation timeout
+- Added health check
+- Removed gunicorn dependency"
+
+git push origin main
+
+
+如果提示需要认证：
+- Username: zt6453928
+- Password: 粘贴你的 Personal Access Token
+
+
+验证修改
+--------
+
+推送成功后：
+1. 访问：https://github.com/zt6453928/translation
+2. 点击 "Dockerfile" 文件
+3. 应该能看到新增的 git、curl 等依赖
+4. 检查 "app.py" 是否包含了 PORT 环境变量处理
+
+
+重新在 Zeabur 部署
+-----------------
+
+推送成功后：
+
+1. 访问 Zeabur 项目
+2. 如果之前部署失败，点击 "Redeploy" 按钮
+3. Zeabur 会自动拉取最新代码重新部署
+4. 等待 5-10 分钟（首次部署需要下载翻译模型）
+5. 部署成功后获取服务 URL
+
+
+🔧 Zeabur 部署技巧
+-----------------
+
+如果重新部署后仍然失败，可以尝试：
+
+1. 检查 Zeabur 日志：
+   - 在 Zeabur 项目中点击 "Logs"
+   - 查看详细的构建和运行日志
+
+2. 调整环境变量：
+   在 Zeabur 项目设置中设置：
+   - LT_CHAR_LIMIT: 3000（降低限制）
+   - LT_REQ_LIMIT: 500（降低限制）
+
+3. 升级 Zeabur 计划：
+   - 免费版可能有内存限制
+   - LibreTranslate 需要较多内存
+   - 考虑升级到付费版（$5/月起）
+
+4. 查看构建日志：
+   - 如果在 "RUN pip install" 步骤失败
+   - 可能需要更多内存或时间
+   - Zeabur 免费版有构建时间限制
+
+
+常见错误及解决方案
+-----------------
+
+错误：timeout during pip install
+解决：已在 Dockerfile 中增加 --timeout=300
+
+错误：Out of memory
+解决：升级 Zeabur 计划或降低并发限制
+
+错误：Port already in use
+解决：Zeabur 会自动分配端口，无需担心
+
+错误：Health check failed
+解决：首次启动需要下载模型，等待时间较长（5-10分钟）
+
+
+🎯 下一步
+--------
+
+1. ✅ 推送修改到 GitHub
+2. ✅ 在 Zeabur 重新部署
+3. ✅ 等待部署完成
+4. ✅ 获取服务 URL
+5. ✅ 更新 Musa 配置
+6. ✅ 测试翻译功能
+
+准备好了吗？选择上面的方法 1 或方法 2 来推送更新吧！🚀

@@ -6,11 +6,10 @@ A cloud-based translation service powered by LibreTranslate
 
 import os
 import sys
-from libretranslate.main import main
 
 if __name__ == "__main__":
-    # 从环境变量读取配置，提供默认值
-    port = int(os.getenv('LT_PORT', '5000'))
+    # 从环境变量读取配置，Zeabur 会自动设置 PORT
+    port = int(os.getenv('PORT', os.getenv('LT_PORT', '5000')))
     host = os.getenv('LT_HOST', '0.0.0.0')
     char_limit = int(os.getenv('LT_CHAR_LIMIT', '5000'))
     req_limit = int(os.getenv('LT_REQ_LIMIT', '1000'))
@@ -37,4 +36,6 @@ if __name__ == "__main__":
         print(f"🔐 API Keys enabled")
     print("=" * 50)
     
+    # 导入并启动
+    from libretranslate.main import main
     main()
