@@ -1,0 +1,5 @@
+libretranslate==1.6.3
+flask>=3.0.0
+waitress>=3.0.0
+gunicorn>=21.2.0
+argostranslate>=1.9.0

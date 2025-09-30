@@ -1,0 +1,24 @@
+{
+  "name": "LibreTranslate Service",
+  "description": "Open source translation service powered by LibreTranslate",
+  "services": [
+    {
+      "name": "libretranslate",
+      "type": "python",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "python app.py",
+      "ports": [
+        {
+          "port": 5000,
+          "protocol": "http"
+        }
+      ],
+      "env": {
+        "LT_PORT": "5000",
+        "LT_HOST": "0.0.0.0",
+        "LT_CHAR_LIMIT": "5000",
+        "LT_REQ_LIMIT": "1000"
+      }
+    }
+  ]
+}
